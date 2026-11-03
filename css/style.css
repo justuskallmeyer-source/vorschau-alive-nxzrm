@@ -37,6 +37,8 @@ h1, h2, h3 { font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; hyphe
 .btn-linie { border-color: rgba(255,255,255,.85); color: var(--weiss); }
 .btn-linie:hover { background: rgba(255,255,255,.14); color: var(--weiss); }
 .btn-dunkel { border-color: #1E2124; color: #1E2124; background: rgba(255,255,255,.35); }
+.btn-whatsapp { background: #1F8F4E; color: var(--weiss); }
+.btn-whatsapp:hover { background: #18773F; color: var(--weiss); }
 .btn-dunkel:hover { background: rgba(255,255,255,.7); color: #1E2124; }
 .pfeil { font-weight: 600; text-decoration: none; }
 .pfeil::after { content: " →"; }
@@ -129,7 +131,7 @@ h1, h2, h3 { font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; hyphe
 
 /* Über mich: graue Fläche, Name links mit Foto, Text und Faktentabelle rechts */
 .grau { background: var(--hell); }
-.person img { width: 100%; margin-top: 28px; border-radius: 4px; }
+.person img { width: 100%; max-width: 440px; margin-top: 28px; border-radius: 4px; }
 .fakten { margin-top: 12px; border-top: 1px solid var(--linie); }
 .fakten div { display: grid; gap: 2px; padding: 14px 0; border-bottom: 1px solid var(--linie); }
 .fakten dt { font-weight: 600; color: var(--text); }
