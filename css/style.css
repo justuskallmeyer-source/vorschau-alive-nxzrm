@@ -1,0 +1,202 @@
+/* Alive Chiropractic · Redesign 2026
+   Farben wie bisher: Logo-Blau #237CB6, Logo-Grau #757575, Textgrau, Weiß, helles Grau.
+   Eine Schrift (Hanken Grotesk), mobile first (min-width 600 / 900 / 1200). */
+:root {
+  --blau: #237CB6;
+  --blau-dunkel: #1A6496;
+  --grau: #757575;
+  --text: #333638;
+  --text-2: #4D4D4D;
+  --linie: #DADADA;
+  --hell: #F0F0F0;
+  --weiss: #FFFFFF;
+  --kopf-h: 64px;
+  --rand: 20px;
+  --font: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+}
+@media (min-width: 900px) { :root { --kopf-h: 76px; --rand: 40px; } }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: var(--kopf-h); }
+body { margin: 0; background: var(--weiss); color: var(--text); font: 400 18px/1.6 var(--font); -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: var(--blau); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--blau-dunkel); }
+h1, h2, h3, p, dl, dd, ul, figure { margin: 0; }
+h1, h2, h3 { font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; hyphens: auto; overflow-wrap: break-word; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 var(--rand); }
+
+/* Buttons: rechteckig, Logo-Blau */
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px; border: 2px solid transparent; border-radius: 4px;
+  font: 600 17px/1.2 var(--font); text-decoration: none; white-space: nowrap; transition: background .2s, color .2s, border-color .2s; }
+.btn-blau { background: var(--blau); color: var(--weiss); }
+.btn-blau:hover { background: var(--blau-dunkel); color: var(--weiss); }
+.btn-weiss { background: var(--weiss); color: var(--blau); }
+.btn-weiss:hover { background: #E6F0F7; color: var(--blau-dunkel); }
+.btn-linie { border-color: rgba(255,255,255,.85); color: var(--weiss); }
+.btn-linie:hover { background: rgba(255,255,255,.14); color: var(--weiss); }
+.pfeil { font-weight: 600; text-decoration: none; }
+.pfeil::after { content: " →"; }
+.pfeil:hover { text-decoration: underline; }
+
+/* Kopfzeile */
+.kopf { position: fixed; inset: 0 0 auto; z-index: 50; height: var(--kopf-h); background: var(--weiss); border-bottom: 1px solid var(--linie); }
+.kopf-in { display: flex; align-items: center; gap: 24px; height: 100%; }
+.kopf-logo { flex: 0 1 auto; margin-right: auto; }
+.kopf-logo img { width: 190px; }
+.kopf-nav { display: none; }
+.kopf-tel { display: none; }
+.kopf-toggle { position: relative; width: 44px; height: 44px; margin-right: -10px; border: 0; background: none; cursor: pointer; }
+.kopf-toggle span:not(.sr) { position: absolute; left: 11px; right: 11px; height: 2px; background: var(--text); transition: transform .25s; }
+.kopf-toggle span:nth-child(1) { top: 17px; }
+.kopf-toggle span:nth-child(2) { top: 25px; }
+.kopf.is-open .kopf-toggle span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+.kopf.is-open .kopf-toggle span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+.kopf.is-open .kopf-nav { display: flex; flex-direction: column; position: absolute; top: var(--kopf-h); left: 0; right: 0; padding: 8px var(--rand) 24px; background: var(--weiss); border-bottom: 1px solid var(--linie); }
+.kopf-nav a { padding: 12px 0; color: var(--text); font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--hell); }
+.kopf-nav a:hover { color: var(--blau); }
+@media (min-width: 600px) { .kopf-tel { display: inline-flex; } }
+@media (min-width: 1240px) {
+  .kopf-logo img { width: 218px; }
+  .kopf-toggle { display: none; }
+  .kopf-nav, .kopf.is-open .kopf-nav { display: flex; flex-direction: row; position: static; gap: 28px; padding: 0; border: 0; background: none; }
+  .kopf-nav a { padding: 6px 0; border: 0; font-size: 17px; }
+}
+
+/* Hero: gepinnte Bildfolge (js/hero.js) */
+.hero { position: relative; height: 100vh; height: 100svh; min-height: 520px; padding-top: var(--kopf-h); background: #3D82C2; }
+.hero-stage { position: relative; height: 100%; overflow: hidden; }
+.hero-poster, .hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-poster { object-fit: cover; object-position: 75% 100%; }
+.hero.is-ready .hero-poster { visibility: hidden; }
+.hero-shade { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(20,60,100,.38) 0%, rgba(20,60,100,.12) 40%, rgba(20,60,100,0) 60%); }
+.hero-copy { position: relative; z-index: 2; padding-top: 28px; color: var(--weiss); container-type: inline-size; }
+.hero-title { max-width: 11ch; font-size: min(64px, 13cqi); font-weight: 650; text-shadow: 0 1px 24px rgba(10,40,70,.25); }
+.hero-lead { max-width: 30em; margin-top: 14px; font-size: 18px; line-height: 1.5; text-shadow: 0 1px 14px rgba(10,40,70,.35); }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+.hero-note { position: absolute; z-index: 2; right: 12px; bottom: 10px; color: rgba(255,255,255,.85); font-size: 12px; text-shadow: 0 1px 6px rgba(0,0,0,.4); }
+@media (min-width: 900px) and (min-aspect-ratio: 11/10) {
+  .hero-shade { background: linear-gradient(90deg, rgba(20,60,100,.42) 0%, rgba(20,60,100,.18) 38%, rgba(20,60,100,0) 58%); }
+  .hero-copy { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding-top: 0; padding-bottom: 6vh; }
+  .hero-copy > * { max-width: 640px; }
+  .hero-title { font-size: min(84px, 8.4cqi); }
+  .hero-lead { font-size: 21px; margin-top: 20px; }
+  .hero-cta { margin-top: 30px; }
+  .hero-note { right: 20px; bottom: 14px; font-size: 13px; }
+}
+
+/* Abschnitte: Titel links, Text rechts */
+.abschnitt { padding: 64px 0; }
+.raster { display: grid; gap: 20px; container-type: inline-size; }
+.raster-2 { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--linie); }
+.titel { font-size: min(44px, 9cqi); color: var(--text); }
+.titel-klein { font-size: 22px; line-height: 1.25; }
+.text { display: grid; gap: 18px; max-width: 760px; }
+.text p { color: var(--text-2); }
+.gross { font-size: 22px; line-height: 1.45; color: var(--text) !important; }
+.unter { margin-top: 8px; color: var(--grau); font-size: 19px; }
+.hinweis { font-size: 16px; }
+.antwort { font-size: 72px; line-height: 1; font-weight: 700; color: var(--blau) !important; letter-spacing: -0.02em; }
+@media (min-width: 900px) {
+  .abschnitt { padding: 110px 0; }
+  .raster { grid-template-columns: 5fr 7fr; gap: 48px; align-items: start; }
+  .titel { font-size: min(52px, 4.4cqi); }
+  .kontakt-text .titel { font-size: min(52px, 10cqi); }
+  .raster-2 { margin-top: 72px; padding-top: 40px; }
+  .titel-klein { font-size: 24px; }
+  .gross { font-size: 25px; }
+  .antwort { font-size: 120px; }
+}
+
+/* Bildband unter der Begrüßung (Originalfoto 1155 x 412) */
+.band { margin-top: 56px; }
+.band img { width: 100%; max-width: 1320px; margin: 0 auto; aspect-ratio: 1155 / 412; object-fit: cover; }
+@media (max-width: 599px) { .band img { aspect-ratio: 4 / 3; object-position: 60% 50%; } }
+@media (min-width: 900px) { .band { margin-top: 88px; padding: 0 var(--rand); } }
+
+/* Über mich: graue Fläche, Name links mit Foto, Text und Faktentabelle rechts */
+.grau { background: var(--hell); }
+.person img { width: 100%; margin-top: 28px; border-radius: 4px; }
+.fakten { margin-top: 12px; border-top: 1px solid var(--linie); }
+.fakten div { display: grid; gap: 2px; padding: 14px 0; border-bottom: 1px solid var(--linie); }
+.fakten dt { font-weight: 600; color: var(--text); }
+.fakten dd { color: var(--text-2); }
+@media (min-width: 600px) { .fakten div { grid-template-columns: 9.5em 1fr; gap: 16px; } }
+@media (min-width: 900px) { .person img { margin-top: 40px; } }
+
+/* Listen */
+.liste { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--linie); }
+.liste li { padding: 11px 0; border-bottom: 1px solid var(--linie); color: var(--text); }
+@media (min-width: 600px) { .liste:not(.liste-1) { grid-template-columns: 1fr 1fr; column-gap: 32px; } }
+
+/* Blaues Band: Subluxation */
+.blau { padding: 64px 0; background: var(--blau); color: var(--weiss); }
+.blau .titel, .blau .gross, .blau .text p, .blau .titel-klein { color: var(--weiss) !important; }
+.blau .gross { margin-top: 20px; }
+.blau .text p { color: #EAF2F8 !important; }
+.blau .titel-klein { margin-top: 12px; }
+.blau .liste { border-color: rgba(255,255,255,.35); }
+.blau .liste li { color: var(--weiss); border-color: rgba(255,255,255,.35); }
+@media (min-width: 900px) { .blau { padding: 110px 0; } }
+
+/* Erfahrungsvideos */
+.videos { display: grid; gap: 28px; margin-top: 40px; align-items: start; }
+.video { position: relative; display: block; padding: 0; border: 0; background: none; text-align: left; font: inherit; color: var(--text); cursor: pointer; }
+.video img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 4px; }
+.video::before { content: ""; position: absolute; z-index: 1; left: 16px; top: 16px; width: 56px; height: 40px; border-radius: 6px; background: var(--blau); transition: background .2s; }
+.video::after { content: ""; position: absolute; z-index: 2; left: 39px; top: 27px; border-style: solid; border-width: 9px 0 9px 14px; border-color: transparent transparent transparent #fff; }
+.video:hover::before { background: var(--blau-dunkel); }
+.video.is-playing::before, .video.is-playing::after { display: none; }
+.video-titel { display: block; margin-top: 12px; font-weight: 600; font-size: 18px; line-height: 1.35; }
+.video:hover .video-titel { color: var(--blau); }
+.video-frame { position: relative; aspect-ratio: 16 / 9; }
+.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 4px; }
+@media (min-width: 600px) { .videos { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) { .videos { grid-template-columns: repeat(3, 1fr); gap: 40px 32px; margin-top: 64px; } }
+
+/* Kontakt */
+.kontakt { padding: 64px 0; background: var(--hell); }
+.kontakt-in { display: grid; gap: 40px; }
+.kontakt-text { display: grid; gap: 16px; align-content: start; container-type: inline-size; }
+.kontakt-text .gross { margin-top: 4px; }
+.kontakt-tel { margin-top: 8px; font-size: min(40px, 10cqi); font-weight: 650; text-decoration: none; letter-spacing: -0.01em; }
+address { font-style: normal; color: var(--text); }
+.kontakt-text .titel-klein { margin-top: 16px; }
+.zeiten { border-top: 1px solid var(--linie); }
+.zeiten div { display: grid; gap: 2px; padding: 12px 0; border-bottom: 1px solid var(--linie); }
+.zeiten dt { font-weight: 600; }
+.zeiten dd { color: var(--text-2); }
+.zeiten .is-heute dt::after { content: "Heute"; display: block; font-size: 15px; font-weight: 600; color: var(--blau); }
+@media (min-width: 600px) { .zeiten div { grid-template-columns: 13em 1fr; gap: 16px; } }
+.karte img { width: 100%; border: 1px solid var(--linie); border-radius: 4px; background: #F2F4F6; }
+.karte figcaption { margin-top: 12px; }
+@media (min-width: 900px) {
+  .kontakt { padding: 110px 0; }
+  .kontakt-in { grid-template-columns: 5fr 7fr; gap: 64px; }
+  .karte { align-self: start; margin-top: 8px; }
+}
+
+/* Fuß */
+.fuss { padding: 48px 0 40px; border-top: 1px solid var(--linie); background: var(--weiss); font-size: 16px; color: var(--text-2); }
+.fuss-in { display: grid; gap: 18px; }
+.fuss-logo { width: 218px; }
+.fuss a { color: var(--text-2); }
+.fuss a:hover { color: var(--blau); }
+.fuss-nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+.fuss-copy { color: var(--grau); }
+@media (min-width: 900px) {
+  .fuss-in { grid-template-columns: auto 1fr auto; align-items: center; gap: 24px 48px; }
+  .fuss-copy { grid-column: 1 / -1; }
+}
+
+/* Unterseiten (Impressum, Datenschutz) */
+.seite { padding: calc(var(--kopf-h) + 56px) 0 80px; }
+.seite .wrap { max-width: 860px; container-type: inline-size; }
+.seite h1 { font-size: min(52px, 10cqi); margin-bottom: 32px; }
+.seite h2 { font-size: 24px; margin: 40px 0 12px; }
+.seite h3 { font-size: 19px; margin: 24px 0 8px; }
+.seite p, .seite li { color: var(--text-2); margin-bottom: 12px; overflow-wrap: break-word; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
