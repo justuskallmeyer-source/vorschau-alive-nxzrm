@@ -121,9 +121,9 @@ h1, h2, h3 { font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; hyphe
   .antwort { font-size: 120px; }
 }
 
-/* Bildband unter der Begrüßung (Originalfoto 1155 x 412) */
+/* Bildband (Praxisfotos, mit Higgsfield heller und in 4K neu aufgebaut, 21:9) */
 .band { margin-top: 56px; }
-.band img { width: 100%; max-width: 1320px; margin: 0 auto; aspect-ratio: 1155 / 412; object-fit: cover; }
+.band img { width: 100%; max-width: 1320px; margin: 0 auto; aspect-ratio: 21 / 9; object-fit: cover; }
 @media (max-width: 599px) { .band img { aspect-ratio: 4 / 3; object-position: 60% 50%; } }
 @media (min-width: 900px) { .band { margin-top: 88px; padding: 0 var(--rand); } }
 
@@ -157,7 +157,7 @@ h1, h2, h3 { font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; hyphe
 
 /* Erfahrungsvideos */
 .videos { display: grid; gap: 28px; margin-top: 40px; align-items: start; }
-.video { position: relative; display: block; padding: 0; border: 0; background: none; text-align: left; font: inherit; color: var(--text); cursor: pointer; }
+.video { position: relative; display: block; padding: 0; border: 0; background: none; text-align: left; font: inherit; color: var(--text); text-decoration: none; cursor: pointer; }
 .video img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 4px; }
 .video::before { content: ""; position: absolute; z-index: 1; left: 16px; top: 16px; width: 56px; height: 40px; border-radius: 6px; background: var(--blau); transition: background .2s; }
 .video::after { content: ""; position: absolute; z-index: 2; left: 39px; top: 27px; border-style: solid; border-width: 9px 0 9px 14px; border-color: transparent transparent transparent #fff; }
@@ -183,7 +183,7 @@ address { font-style: normal; color: var(--text); }
 .zeiten dt { font-weight: 600; }
 .zeiten dd { color: var(--text-2); }
 .zeiten .is-heute dt::after { content: "Heute"; display: block; font-size: 15px; font-weight: 600; color: var(--blau); }
-@media (min-width: 600px) { .zeiten div { grid-template-columns: 13em 1fr; gap: 16px; } }
+@media (min-width: 600px) { .zeiten div { grid-template-columns: 13em 1fr; gap: 16px; } .zeiten.anfahrt div { grid-template-columns: 6.5em 1fr; } }
 .karte img { width: 100%; border: 1px solid var(--linie); border-radius: 4px; background: #F2F4F6; }
 .karte figcaption { margin-top: 12px; }
 @media (min-width: 900px) {
