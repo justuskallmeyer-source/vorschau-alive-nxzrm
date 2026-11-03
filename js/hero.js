@@ -73,9 +73,9 @@
   function draw() {
     const f = clamp(prog / F_END);
     const n = count(), fi = f * (n - 1);
-    const i0 = Math.floor(fi), i1 = Math.min(n - 1, i0 + 1), mix = fi - i0;   // Überblendung zwischen Nachbarbildern
+    // nächstliegendes Bild, keine Überblendung (die schnelle Armbewegung gäbe sonst Doppelkonturen)
+    const i0 = Math.round(fi);
     const a = nearest(i0);
-    const b = mix > 0.02 && frames[i1] && frames[i0] ? frames[i1] : null;
     if (!a || !cw) return;
     const iw = a.naturalWidth, ih = a.naturalHeight;
     // Quer: bildschirmfüllend, links eher beschneiden (Mann steht rechts, Text links im Himmel).
@@ -85,12 +85,10 @@
     const dw = iw * s, dh = ih * s;
     const dx = (cw - dw) * (mode === 'm' ? 0.5 : 0.75);
     const dy = mode === 'd' ? (ch - dh) * 0.6 : ch - dh;
-    const key = i0 + '|' + (b ? mix.toFixed(3) : 0) + '|' + cw + 'x' + ch + '|' + (a === frames[i0]);
+    const key = i0 + '|' + cw + 'x' + ch + '|' + (a === frames[i0]);
     if (key === lastKey) return;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.globalAlpha = 1;
     paint(a, dx, dy, dw, dh);
-    if (b) { ctx.globalAlpha = mix; paint(b, dx, dy, dw, dh); ctx.globalAlpha = 1; }
     lastKey = key;
   }
 
