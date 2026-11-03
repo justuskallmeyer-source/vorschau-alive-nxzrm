@@ -36,6 +36,8 @@ h1, h2, h3 { font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; hyphe
 .btn-weiss:hover { background: #E6F0F7; color: var(--blau-dunkel); }
 .btn-linie { border-color: rgba(255,255,255,.85); color: var(--weiss); }
 .btn-linie:hover { background: rgba(255,255,255,.14); color: var(--weiss); }
+.btn-dunkel { border-color: #1E2124; color: #1E2124; background: rgba(255,255,255,.35); }
+.btn-dunkel:hover { background: rgba(255,255,255,.7); color: #1E2124; }
 .pfeil { font-weight: 600; text-decoration: none; }
 .pfeil::after { content: " →"; }
 .pfeil:hover { text-decoration: underline; }
@@ -65,27 +67,34 @@ h1, h2, h3 { font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; hyphe
 }
 
 /* Hero: gepinnte Bildfolge (js/hero.js) */
-.hero { position: relative; height: 100vh; height: 100svh; min-height: 520px; padding-top: var(--kopf-h); background: #3D82C2; }
+.hero { position: relative; height: 100vh; height: 100svh; min-height: 520px; padding-top: var(--kopf-h); background: #E8DCC6; }
 .hero-stage { position: relative; height: 100%; overflow: hidden; }
 .hero-poster, .hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 .hero-poster { object-fit: cover; object-position: 75% 100%; }
 .hero.is-ready .hero-poster { visibility: hidden; }
 .hero-shade { position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(180deg, rgba(20,60,100,.38) 0%, rgba(20,60,100,.12) 40%, rgba(20,60,100,0) 60%); }
-.hero-copy { position: relative; z-index: 2; padding-top: 28px; color: var(--weiss); container-type: inline-size; }
-.hero-title { max-width: 11ch; font-size: min(64px, 13cqi); font-weight: 650; text-shadow: 0 1px 24px rgba(10,40,70,.25); }
-.hero-lead { max-width: 30em; margin-top: 14px; font-size: 18px; line-height: 1.5; text-shadow: 0 1px 14px rgba(10,40,70,.35); }
+  background: linear-gradient(180deg, rgba(255,251,244,.42) 0%, rgba(255,251,244,.16) 38%, rgba(255,251,244,0) 55%); }
+/* Warmer, heller Himmel: dunkle Schrift, Hauptbutton im Logo-Blau */
+.hero-copy { position: relative; z-index: 2; padding-top: 28px; color: #1E2124; container-type: inline-size; }
+/* Titel immer einzeilig: Textbreite 11,23 em, Schrift per cqi an die Spaltenbreite gekoppelt */
+.hero-title { max-width: none !important; white-space: nowrap; font-size: min(64px, 8.6cqi); font-weight: 650; text-shadow: 0 0 28px rgba(255,248,236,.55); }
+.hero-lead { max-width: 30em; margin-top: 14px; font-size: 18px; line-height: 1.5; text-shadow: 0 0 16px rgba(255,248,236,.7); }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
 .hero-note { position: absolute; z-index: 2; right: 12px; bottom: 10px; color: rgba(255,255,255,.85); font-size: 12px; text-shadow: 0 1px 6px rgba(0,0,0,.4); }
 @media (min-width: 900px) and (min-aspect-ratio: 11/10) {
-  .hero-shade { background: linear-gradient(90deg, rgba(20,60,100,.42) 0%, rgba(20,60,100,.18) 38%, rgba(20,60,100,0) 58%); }
+  .hero-shade { background: radial-gradient(ellipse 60% 55% at 18% 22%, rgba(255,251,244,.5) 0%, rgba(255,251,244,.2) 55%, rgba(255,251,244,0) 100%); }
   /* Text oben im Himmel, damit die Skyline am Horizont (ca. 58 % der Bildhöhe) frei bleibt */
   .hero-copy { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-start; padding-top: clamp(40px, 11vh, 150px); }
   .hero-copy > * { max-width: 640px; }
-  .hero-title { font-size: min(84px, 8.4cqi); }
+  .hero-title { font-size: min(60px, 8.6cqi); }   /* endet vor der erhobenen linken Hand (ca. 60 % der Bildbreite) */
   .hero-lead { font-size: 21px; margin-top: 20px; }
   .hero-cta { margin-top: 30px; }
   .hero-note { right: 20px; bottom: 14px; font-size: 13px; }
+}
+
+/* Quer, aber eher quadratisch (z. B. 1024 x 768): Bild wird seitlich stärker beschnitten, die Hand rückt nach links */
+@media (min-width: 900px) and (min-aspect-ratio: 11/10) and (max-aspect-ratio: 16/10) {
+  .hero-title { font-size: min(48px, 8.6cqi); }
 }
 
 /* Abschnitte: Titel links, Text rechts */

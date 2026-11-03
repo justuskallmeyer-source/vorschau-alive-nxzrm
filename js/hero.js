@@ -2,7 +2,7 @@
    und reißt die Arme hoch wie die Figur im Logo. Bildfolge aus dem Higgsfield-Video (tools/build_frames.py).
    GSAP ScrollTrigger hält den Hero fest (pin), bis die Bewegung durch ist und das Endbild kurz gestanden hat.
    Die Darstellung ist eine reine Funktion des Scrollfortschritts, kein Abfangen von Mausrad oder Wischen.
-   Quer ("d"): ganzes Bild. Tablet hochkant ("t"): Querbild unten bündig. Handy ("m"): Ausschnitt 2:3 um den Mann,
+   Quer ("d"): ganzes Bild. Tablet hochkant ("t"): Querbild unten bündig. Handy ("m"): Ausschnitt um den Mann (1080 x 1406),
    unten bündig. Über dem Bild wird der Himmel aus der obersten Bildzeile verlängert, dort steht der Text. */
 (() => {
   const hero = document.querySelector('[data-hero]');
