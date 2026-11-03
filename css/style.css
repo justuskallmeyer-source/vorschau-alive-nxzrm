@@ -79,7 +79,8 @@ h1, h2, h3 { font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; hyphe
 .hero-note { position: absolute; z-index: 2; right: 12px; bottom: 10px; color: rgba(255,255,255,.85); font-size: 12px; text-shadow: 0 1px 6px rgba(0,0,0,.4); }
 @media (min-width: 900px) and (min-aspect-ratio: 11/10) {
   .hero-shade { background: linear-gradient(90deg, rgba(20,60,100,.42) 0%, rgba(20,60,100,.18) 38%, rgba(20,60,100,0) 58%); }
-  .hero-copy { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding-top: 0; padding-bottom: 6vh; }
+  /* Text oben im Himmel, damit die Skyline am Horizont (ca. 58 % der Bildhöhe) frei bleibt */
+  .hero-copy { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-start; padding-top: clamp(40px, 11vh, 150px); }
   .hero-copy > * { max-width: 640px; }
   .hero-title { font-size: min(84px, 8.4cqi); }
   .hero-lead { font-size: 21px; margin-top: 20px; }
