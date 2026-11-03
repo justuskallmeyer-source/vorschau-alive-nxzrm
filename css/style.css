@@ -23,7 +23,7 @@ img { display: block; max-width: 100%; height: auto; }
 a { color: var(--blau); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 a:hover { color: var(--blau-dunkel); }
 h1, h2, h3, p, dl, dd, ul, figure { margin: 0; }
-h1, h2, h3 { font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; hyphens: auto; overflow-wrap: break-word; }
+h1, h2, h3 { font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; hyphens: manual; text-wrap: balance; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .wrap { width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 var(--rand); }
 
@@ -145,12 +145,15 @@ h1, h2, h3 { font-weight: 600; line-height: 1.12; letter-spacing: -0.01em; hyphe
 /* Blaues Band: Subluxation */
 .blau { padding: 64px 0; background: var(--blau); color: var(--weiss); }
 .blau .titel, .blau .gross, .blau .text p, .blau .titel-klein { color: var(--weiss) !important; }
-.blau .gross { margin-top: 20px; }
+.blau .gross { margin-top: 4px; }
 .blau .text p { color: #EAF2F8 !important; }
 .blau .titel-klein { margin-top: 12px; }
 .blau .liste { border-color: rgba(255,255,255,.35); }
 .blau .liste li { color: var(--weiss); border-color: rgba(255,255,255,.35); }
 @media (min-width: 900px) { .blau { padding: 110px 0; } }
+
+/* Überschrift über die volle Breite, immer einzeilig (Textbreite 11,24 em) */
+.blau .titel-zeile { grid-column: 1 / -1; white-space: nowrap; font-size: min(52px, 8.6cqi); }
 
 /* Erfahrungsvideos */
 .videos { display: grid; gap: 28px; margin-top: 40px; align-items: start; }
